@@ -57,7 +57,8 @@ ssh <your-username>@<server-ip>
 > **Screenshot 1:** Take a screenshot of your terminal showing a successful
 > SSH login (the welcome banner and your shell prompt) and insert it here.
 >
-> `[insert screenshot]`
+> <img width="1920" height="1020" alt="لقطة شاشة 2026-06-16 222606" src="https://github.com/user-attachments/assets/936c45e4-11ab-4bc6-a763-aedddbf9888f" />
+
 
 ### Option B – Your Own Machine
 
@@ -98,7 +99,8 @@ psql --version
 
 > **Screenshot 2:** Take a screenshot showing the output of both commands.
 >
-> `[insert screenshot]`
+> <img width="1920" height="1020" alt="لقطة شاشة 2026-06-16 223212" src="https://github.com/user-attachments/assets/8a874085-d8e2-43b5-bce4-e60817f9404c" />
+
 
 ---
 
