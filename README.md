@@ -757,7 +757,9 @@ SQLite (DBMS_05) and PostgreSQL (this exercise) are both relational databases,
 but they operate very differently. Name two concrete differences you experienced
 in this exercise — in terms of setup, access control, or SQL behaviour.
 
-> *Your answer:*
+> *Your answer:*   SQLite runs as an embedded database inside a single file and does not require a server or user authentication. PostgreSQL, on the other hand, runs as a client-server system and requires a running database server and a connection via tools like psql.
+
+Another difference is access control: PostgreSQL supports roles, users, and permissions (e.g. GRANT, CREATE ROLE), while SQLite has no real built-in user or privilege management.
 
 **Question B – COPY vs. INSERT:**  
 You inserted the `buch` and `exemplar` rows one at a time, and the `ausleihe`
@@ -765,21 +767,27 @@ rows via `COPY`. For a real import of 50,000 rows, which approach would you
 choose and why? What is the main operational cost of individual `INSERT`
 statements at scale?
 
-> *Your answer:*
+> *Your answer:*  For importing 50,000 rows, I would choose COPY because it is significantly faster and optimized for bulk data loading.
+
+The main cost of individual INSERT statements is the overhead of processing each row separately, including parsing, transaction handling, and logging, which becomes very inefficient at large scale.
 
 **Question C – Role model:**  
 You created a dedicated role with `LOGIN` and a password. The `postgres`
 superuser also exists. What is the security principle behind creating a
 separate role instead of always connecting as `postgres`?
 
-> *Your answer:*
+> *Your answer:*   The security principle is the “Principle of Least Privilege”.
+
+Instead of using the superuser postgres, a separate login role is created so that each user only has the permissions they need. This reduces the risk of accidental or malicious changes to the entire database system.
 
 **Question D – Script-driven setup:**  
 The `kino.sql` script creates the schema and inserts data in one run. What
 is the advantage of this approach over typing the statements interactively?
 Name one situation where an interactive approach is still preferable.
 
-> *Your answer:*
+> *Your answer:*  The main advantage of a script-driven setup is reproducibility: the database schema and data can be recreated exactly the same way at any time by running the script.
+
+An interactive approach is preferable when debugging or testing small SQL queries step by step, where immediate feedback is needed.
 
 ---
 
