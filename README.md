@@ -711,7 +711,8 @@ psql -U <your-username> -d kino -f kino.sql
 
 > **Screenshot 8:** Take a screenshot showing the script execution output.
 >
-> `[insert screenshot]`
+> <img width="1297" height="162" alt="image" src="https://github.com/user-attachments/assets/25865be6-3eb2-46f8-8965-f0044fedc0e4" />
+
 
 ---
 
