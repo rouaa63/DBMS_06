@@ -378,7 +378,8 @@ SELECT COUNT(*) FROM mitglied;
 
 > **Screenshot 5:** Take a screenshot showing the three `COUNT(*)` results.
 >
-> `[insert screenshot]` \\\\\\\\\\\\\\\
+> <img width="1920" height="1020" alt="لقطة شاشة 2026-06-17 141149" src="https://github.com/user-attachments/assets/c21ad849-b40e-4d23-8d62-e8c849ead17f" />
+
 > 
 
 Exit `psql`:
