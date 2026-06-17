@@ -99,7 +99,8 @@ psql --version
 
 > **Screenshot 2:** Take a screenshot showing the output of both commands.
 >
-> <img width="1920" height="1020" alt="لقطة شاشة 2026-06-16 223212" src="https://github.com/user-attachments/assets/8a874085-d8e2-43b5-bce4-e60817f9404c" />
+> <img width="1424" height="580" alt="image" src="https://github.com/user-attachments/assets/842d1789-0683-4db3-b2cf-dcf75cae201b" />
+
 
 
 ---
