@@ -99,7 +99,8 @@ psql --version
 
 > **Screenshot 2:** Take a screenshot showing the output of both commands.
 >
-> <img width="1424" height="580" alt="image" src="https://github.com/user-attachments/assets/842d1789-0683-4db3-b2cf-dcf75cae201b" />
+> <img width="1229" height="241" alt="لقطة شاشة 2026-06-16 223212" src="https://github.com/user-attachments/assets/0035ff94-2410-41d0-863c-f8825f9d7be1" />
+
 
 
 
@@ -157,7 +158,8 @@ Exit the superuser session:
 > **Screenshot 3:** Take a screenshot showing the `CREATE ROLE`, `CREATE DATABASE`,
 > and both `SELECT` results inside the `postgres=#` session.
 >
-> Ich habe versucht, die Rolle zu erstellen, jedoch hatte ich keine Rechte dafür                    <img width="1905" height="769" alt="image" src="https://github.com/user-attachments/assets/dda17c8d-0e78-48a7-9203-cccb734034f1" />
+><img width="1424" height="580" alt="image" src="https://github.com/user-attachments/assets/f93420f1-5887-4a37-98a7-5cf1ddefab32" />
+
 
 
 ---
