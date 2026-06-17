@@ -156,7 +156,8 @@ Exit the superuser session:
 > **Screenshot 3:** Take a screenshot showing the `CREATE ROLE`, `CREATE DATABASE`,
 > and both `SELECT` results inside the `postgres=#` session.
 >
-> `[insert screenshot]`
+> Ich habe versucht, die Rolle zu erstellen, jedoch hatte ich keine Rechte dafür                    <img width="1905" height="769" alt="image" src="https://github.com/user-attachments/assets/dda17c8d-0e78-48a7-9203-cccb734034f1" />
+
 
 ---
 
