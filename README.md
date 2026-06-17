@@ -765,7 +765,8 @@ ORDER BY reservierungen DESC;
 > **Screenshot 9:** Take a screenshot showing the output of all three
 > `SELECT` statements.
 >
-> `[insert screenshot]`
+> <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/da2ccd31-a193-43df-b3b2-884b22055176" />
+
 
 ### Questions for Section 9
 
@@ -773,19 +774,25 @@ ORDER BY reservierungen DESC;
 constraint. What does this prevent, and at which level is this constraint
 enforced — application or database?
 
-> *Your answer:*
+> *Your answer:*  The constraint UNIQUE (vorstellung_id, sitzplatz) prevents the same seat from being reserved more than once for the same screening.
+
+This constraint is enforced by the database, not by the application. PostgreSQL checks it automatically whenever data is inserted or updated.
 
 **Question 9.2:** The third query uses `LEFT JOIN` between `vorstellung` and
 `reservierung`. What would be different about the result if you used `JOIN`
 (inner join) instead? Which films would disappear from the result and why?
 
-> *Your answer:*
+> *Your answer:*   A LEFT JOIN returns all screenings, even if they have no reservations. An inner JOIN would return only screenings that have at least one reservation.
+
+In the current sample data, all screenings have reservations, so the result would be the same. In general, films with screenings that have no reservations would disappear from the result because there would be no matching rows in reservierung.
 
 **Question 9.3:** `ON DELETE CASCADE` was chosen for `reservierung.vorstellung_id`,
 but `ON DELETE RESTRICT` for `vorstellung.film_id`. Justify both choices in
 terms of the domain.
 
-> *Your answer:*
+> *Your answer:*   ON DELETE CASCADE is used for reservierung.vorstellung_id because reservations depend on a screening. If a screening is deleted, all associated reservations should be deleted automatically.
+
+ON DELETE RESTRICT is used for vorstellung.film_id because a film should not be deleted while screenings for that film still exist. This protects the consistency of the data and prevents orphaned screenings.
 
 Exit `psql`:
 
