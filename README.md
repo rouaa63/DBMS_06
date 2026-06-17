@@ -378,7 +378,8 @@ SELECT COUNT(*) FROM mitglied;
 
 > **Screenshot 5:** Take a screenshot showing the three `COUNT(*)` results.
 >
-> `[insert screenshot]`
+> `[insert screenshot]` \\\\\\\\\\\\\\\
+> 
 
 Exit `psql`:
 
