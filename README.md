@@ -465,7 +465,9 @@ SELECT * FROM ausleihe;
 
 > **Screenshot 6:** Take a screenshot showing the full output of `SELECT * FROM ausleihe`.
 >
-> `[insert screenshot]`
+> <img width="1920" height="1020" alt="BMS_6" src="https://github.com/user-attachments/assets/e3780640-e47f-440c-b3d0-6ec107a65a0a" />
+
+
 
 ### Questions for Section 6
 
@@ -473,19 +475,29 @@ SELECT * FROM ausleihe;
 filesystem. What is the difference between server-side `COPY` and a
 client-side import? In which scenario would you need the client-side variant?
 
-> *Your answer:*
+> *Your answer:*  Server-side COPY runs on the database server and reads files directly from the server’s filesystem, so it requires an absolute path and appropriate server permissions.
+
+Client-side import (e.g. \copy in psql) runs on the client machine and reads the file locally, sending the data to the server.
+
+The client-side variant is needed when the user does not have permission to access server files or when the file is only available on the local machine.
 
 **Question 6.2:** The `NULL ''` option maps empty CSV fields to `NULL`.
 What would happen without this option if the `rueckgabe_datum` field is empty?
 
-> *Your answer:*
+> *Your answer:*  Without the NULL '' option, empty fields in the CSV would be interpreted as empty strings instead of NULL.
+
+For the rueckgabe_datum, this would mean an empty value would be stored as '', which is not the same as NULL and could cause problems in date comparisons or logical checks.
 
 **Question 6.3:** `ausleihe_id` is `GENERATED ALWAYS AS IDENTITY` and was not
 included in the CSV or the `COPY` column list. How does PostgreSQL handle the
 missing value? What would happen if you tried to include `ausleihe_id` in the
 `COPY` column list with explicit values?
 
-> *Your answer:*
+> *Your answer:*  PostgreSQL automatically generates a value for ausleihe_id because it is defined as GENERATED ALWAYS AS IDENTITY.
+
+If the column is not included in the COPY statement, PostgreSQL assigns values automatically.
+
+If you try to explicitly include ausleihe_id in the COPY column list with manual values, PostgreSQL will reject it unless the identity behavior is overridden, because the column is managed by the database.
 
 ---
 
@@ -521,7 +533,7 @@ ORDER BY tage_ausgeliehen DESC;
 ```
 
 > *Describe the result: how many open loans are there, and which member has
-> held a book the longest?*
+> held a book the longest?* There are 2 open loans. The member who has held a book the longest is Lea Hartmann (43 days).
 
 ---
 
@@ -542,7 +554,8 @@ ORDER BY ausleihen_gesamt DESC;
 ```
 
 > *Which member has the most loans? What does `FILTER (WHERE ...)` do here
-> compared to a `CASE WHEN` expression?*
+> compared to a `CASE WHEN` expression?*  Jonas Berger has the most loans with 2 loans.
+FILTER (WHERE ...) counts only the rows that satisfy the condition. Here it counts only open loans. It works similarly to a CASE WHEN expression but is more concise.
 
 ---
 
@@ -564,12 +577,14 @@ WHERE  NOT EXISTS (
 ```
 
 > *Which books appear in the result? Verify the result manually against the
-> data you entered.*
+> data you entered.*  Das Parfum (Fischer) appears in the result.
+After comparing the lending records with the entered data, it is the only book that has never been borrowed.
 
 > **Screenshot 7:** Take a screenshot showing the output of all three queries
 > in sequence in the `psql` shell.
 >
-> `[insert screenshot]`
+> <img width="1195" height="670" alt="image" src="https://github.com/user-attachments/assets/d31de57e-0864-4b7e-afb8-ad769030fb1a" />
+
 
 ### Questions for Section 7
 
@@ -577,19 +592,29 @@ WHERE  NOT EXISTS (
 performed to always produce a correct result, and does the join order affect
 correctness or only performance?
 
-> *Your answer:*
+> *Your answer:*  The joins follow the foreign key relationships: ausleihe → exemplar → buch and ausleihe → mitglied.
+
+For an inner join, the join order does not affect the correctness of the result. PostgreSQL can choose an efficient execution plan automatically. The join order mainly affects performance, not the final result.
 
 **Question 7.2:** Query 2 groups by `m.mitglied_id` in addition to the name
 columns. Why is grouping by the primary key necessary even though names appear
 unique in the sample data?
 
-> *Your answer:*
+> *Your answer:*   Grouping by the primary key (mitglied_id) ensures that each member is uniquely identified. Names may appear unique in the sample data, but in a real database different members could have the same first and last name. Therefore, grouping by the primary key guarantees correct results.
 
 **Question 7.3:** Query 3 uses `NOT EXISTS` with a correlated subquery. Rewrite
 the query using `EXCEPT` and verify that both variants return the same result.
 Write your rewritten query here:
 
-> *Your rewritten query:*
+> *Your rewritten query:*   SELECT b.titel, b.verlag
+FROM buch b
+
+EXCEPT
+
+SELECT b.titel, b.verlag
+FROM buch b
+JOIN exemplar e ON e.isbn = b.isbn
+JOIN ausleihe a ON a.exemplar_id = e.exemplar_id;
 
 Exit `psql`:
 
